@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday Minh Anh ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(180deg,#0d1b2a,#1b263b,#415a77);
+
+}
+
+/* Sao */
+
+body::before{
+content:"";
+position:absolute;
+width:100%;
+height:100%;
+background-image:
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(white 1px, transparent 1px),
+radial-gradient(white 2px, transparent 2px);
+background-size:120px 120px;
+animation:stars 60s linear infinite;
+opacity:.6;
+}
+
+@keyframes stars{
+
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-300px);
+}
+
+}
+
+/* Envelope */
+
+#envelope{
+
+position:relative;
+width:300px;
+height:200px;
+cursor:pointer;
+transition:.8s;
+z-index:10;
+
+}
+
+.base{
+
+position:absolute;
+width:100%;
+height:100%;
+background:#ffb6c1;
+border-radius:8px;
+
+}
+
+.flap{
+
+position:absolute;
+width:100%;
+height:100%;
+background:#ff7aa2;
+clip-path:polygon(0 0,50% 60%,100% 0);
+transform-origin:top;
+transition:1s;
+border-radius:8px;
+
+}
+
+.open .flap{
+
+transform:rotateX(180deg);
+
+}
+
+/* Letter */
+
+.letter{
+
+position:absolute;
+left:50%;
+top:50%;
+transform:translate(-50%,20%);
+width:88%;
+height:78%;
+background:white;
+border-radius:12px;
+padding:25px;
+transition:1.2s;
+overflow:auto;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+
+}
+
+.open .letter{
+
+transform:translate(-50%,-95%);
+height:520px;
+
+}
+
+h1{
+
+text-align:center;
+font-family:'Dancing Script',cursive;
+color:#ff4f8b;
+font-size:40px;
+margin-bottom:20px;
+
+}
+
+#typing{
+
+font-size:18px;
+line-height:1.8;
+color:#444;
+white-space:pre-wrap;
+
+}
+
+/* Hoa */
+
+.flower{
+
+position:absolute;
+font-size:22px;
+animation:fall linear infinite;
+opacity:.9;
+
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-100px) rotate(0deg);
+}
+
+100%{
+
+transform:translateY(120vh) rotate(360deg);
+
+}
+
+}
+
+/* Firework */
+
+.firework{
+
+position:absolute;
+width:6px;
+height:6px;
+border-radius:50%;
+animation:explode 1.2s ease-out forwards;
+
+}
+
+@keyframes explode{
+
+0%{
+
+transform:scale(0);
+opacity:1;
+
+}
+
+100%{
+
+transform:translate(var(--x),var(--y)) scale(2);
+opacity:0;
+
+}
+
+}
+
+/* Click */
+
+.click{
+
+position:absolute;
+bottom:80px;
+color:white;
+font-size:22px;
+animation:blink 1.2s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+opacity:.3;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="music" autoplay loop>
+<source src="snaptt.me-77352356(3).mp3" type="audio/mpeg">
+</audio>
+
+<div id="envelope">
+
+<div class="flap"></div>
+
+<div class="base"></div>
+
+<div class="letter">
+
+<h1>Happy Birthday 🎂</h1>
+
+<div id="typing"></div>
+
+</div>
+
+</div>
+
+<div class="click">
+💌 Nhấn vào phong thư
+</div>
+
+<script>
+
+const envelope=document.getElementById("envelope");
+const typing=document.getElementById("typing");
+const music=document.getElementById("music");
+
+const text=
+`Ngày hôm này là một ngày vô cùng đặc biệt với thế giới vì đã mang đến sự suất hiện của một cô gái dễ thương và đáng yêu vô cùng.
+
+Nhân ngày trọng đại này, tớ chúc cậu luôn luôn bình an mạnh khoẻ.
+
+Chúc cho cậu thành công trên con đường học tập và sự nghiệp.
+
+Chúc cho cậu cùng gia đình luôn hạnh phúc ấm êm.
+
+🎂 Chúc mừng sinh nhật Minh Anh ❤️`;
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+typing.innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,40);
+
+}
+
+}
+
+envelope.onclick=()=>{
+
+envelope.classList.add("open");
+
+document.querySelector(".click").style.display="none";
+
+music.play();
+
+if(i===0){
+
+type();
+
+}
+
+}
+
+/* Hoa rơi */
+
+function flower(){
+
+const f=document.createElement("div");
+
+f.className="flower";
+
+f.innerHTML=["🌸","🌺","💮","🌹","🌷"][Math.floor(Math.random()*5)];
+
+f.style.left=Math.random()*100+"vw";
+
+f.style.animationDuration=4+Math.random()*4+"s";
+
+f.style.fontSize=20+Math.random()*20+"px";
+
+document.body.appendChild(f);
+
+setTimeout(()=>f.remove(),8000);
+
+}
+
+setInterval(flower,300);
+
+/* Fireworks */
+
+function fireworks(){
+
+for(let i=0;i<80;i++){
+
+let p=document.createElement("div");
+
+p.className="firework";
+
+p.style.left=Math.random()*window.innerWidth+"px";
+
+p.style.top=Math.random()*window.innerHeight+"px";
+
+p.style.background=`hsl(${Math.random()*360},100%,60%)`;
+
+p.style.setProperty("--x",(Math.random()-0.5)*250+"px");
+
+p.style.setProperty("--y",(Math.random()-0.5)*250+"px");
+
+document.body.appendChild(p);
+
+setTimeout(()=>p.remove(),1200);
+
+}
+
+}
+
+setInterval(fireworks,2200);
+
+</script>
+
+</body>
+</html>
